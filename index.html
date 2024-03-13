@@ -11,19 +11,18 @@
         }
 
         h1 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 2vh; /* Adjust the value for desired size */
-}
-
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2vh; /* Adjust for desired size */
+        }
 
         .button {
             display: block;
             margin: 0 auto;
             padding: 10px 20px;
             border: none;
-            font-size: 1.5vh; 
+            font-size: 1.5vh;
             background-color: #f0f0f0;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -41,6 +40,25 @@
             margin: 0 auto;
             max-width: 600px;
         }
+
+        #output span {
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        #output span:nth-child(odd) {
+            background-color: #f0f8ff;  /* Light pastel color 1 */
+        }
+
+        #output span:nth-child(even) {
+            background-color: #e6ffe6;  /* Light pastel color 2 */
+        }
+
+        #output span:nth-child(3n+0) {
+            background-color: #d9e6f2;  /* Light pastel color 3 */
+        }
     </style>
 </head>
 
@@ -55,9 +73,10 @@
 
             let result = '';
 
-            let colorCounter = 0; // Counter to alternate colors
+            let colorCounter = 0; // Counter to alternate colors (not used in this version)
 
-            const colors = ['black', 'red', 'green', 'blue']; // Array of colors
+            // Array of colors (not used in this version)
+            // const colors = ['black', 'red', 'green', 'blue'];
 
             let foundResults = false; // Flag to track if any results were found
 
@@ -79,9 +98,7 @@
 
                             foundResults = true; // Set flag if a result is found
 
-                            const color = colors[colorCounter % colors.length]; // Select color
-
-                            result += `<span style="color: ${color}">`; // Open span with color
+                            result += `<span>`; // Open span with automatic color cycling
 
                             result += `A (18 string) = ${i}<br>`;
 
@@ -90,14 +107,6 @@
                             result += `Total Sum (18 x ${i} + 17 * ${j}) = ${i * 18 + 17 * j}<br>`;
 
                             result += `</span>`; // Close span
-
-                            // Add dotted line with alternating color
-
-                            const lineColor = colors[(colorCounter + 1) % colors.length];
-
-                            result += `<hr style="border-top: 1px dashed ${lineColor}; margin: 5px 0;">`;
-
-                            colorCounter++; // Increment color counter for next result
                         }
                     }
                 }
