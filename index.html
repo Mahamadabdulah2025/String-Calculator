@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>String Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            border: none;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #d490e0;
+        }
+
+        #output {
+            border: 1px solid #ddd;
+            padding: 10px;
+            font-family: monospace;
+            margin: 0 auto;
+            max-width: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>String Calculator</h1>
+    <button class="button" onclick="findStrings()">Run Program</button>
+    <div id="output"></div>
+
+    <script>
+        function findStrings() {
+            const sum = parseInt(prompt('Enter the sum:'), 10);
+
+            let result = '';
+
+            let colorCounter = 0; // Counter to alternate colors
+
+            const colors = ['black', 'red', 'green', 'blue']; // Array of colors
+
+            let foundResults = false; // Flag to track if any results were found
+
+            if (sum % 17 === 0) {
+                foundResults = true;
+
+                result += `A (18 string) = 0 <br>`;
+
+                result += `B (17 string) = ${sum / 17}<br>`;
+
+                result += `Total Sum (18 x 0 + 17 * ${sum / 17}) = ${sum}<br>`;
+            } else {
+                for (let i = 100; i > 0; i--) {
+                    for (let j = 0; j < 100; j++) {
+
+                        // Check if divisible by both 17 and 18
+
+                        if ((17 * j + 18 * i) === sum) {
+
+                            foundResults = true; // Set flag if a result is found
+
+                            const color = colors[colorCounter % colors.length]; // Select color
+
+                            result += `<span style="color: ${color}">`; // Open span with color
+
+                            result += `A (18 string) = ${i}<br>`;
+
+                            result += `B (17 string) = ${j}<br>`;
+
+                            result += `Total Sum (18 x ${i} + 17 * ${j}) = ${i * 18 + 17 * j}<br>`;
+
+                            result += `</span>`; // Close span
+
+                            // Add dotted line with alternating color
+
+                            const lineColor = colors[(colorCounter + 1) % colors.length];
+
+                            result += `<hr style="border-top: 1px dashed ${lineColor}; margin: 5px 0;">`;
+
+                            colorCounter++; // Increment color counter for next result
+                        }
+                    }
+                }
+            }
+
+            if (!foundResults) {
+                result = 'No combinations found for the entered sum that are divisible by both 17 and 18.';
+            }
+
+            document.getElementById('output').innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>
